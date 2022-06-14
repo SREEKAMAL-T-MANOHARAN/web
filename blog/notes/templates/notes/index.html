@@ -1,0 +1,19 @@
+{% extends "notes/base.html" %}
+
+{% block content %}
+	<title>{{ blog.title }}</title>
+	{% if latest_blog %}
+		<ol class="list-group list-group-numbered">
+		{% for blog in latest_blog %}
+		  <li class="list-group-item d-flex justify-content-between align-items-start">
+		    <div class="ms-2 me-auto">
+		      <div class="fw-bold"><a href="{% url 'notes:show-details' blog.id %}">{{ blog.title }}</a></div>
+		      {{ blog.description }}
+		    </div>
+		  </li>
+		{% endfor %}
+	    </ol>
+	{% else %}
+		<h1>No Blogs Available</h1>
+	{% endif %}
+{% endblock%}
